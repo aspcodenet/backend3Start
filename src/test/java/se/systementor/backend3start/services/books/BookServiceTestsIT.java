@@ -11,6 +11,13 @@ import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+
+//INTEGRATIONSTESTER - skulle kunna köras VARJE NATT och eller i s.k CI/CD - innan DEPLOY av ny version
+// externa saker - om dom byter author till <TheAuthor>
+// Integrationstester som failar på natten -> SKICKA MAIL TILL ALLA UTVECKLARE
+// LAGA OM FEL !!!!
+
+
 @SpringBootTest
 class BookServiceTestsIT {
     @Autowired
@@ -23,7 +30,6 @@ class BookServiceTestsIT {
 
         assertTrue(  result.contains("<catalog>") );
         assertTrue(  result.contains("</catalog>") );
-        assertTrue(  result.contains("<author>") );
         assertTrue(  result.contains("<author>") );
         assertTrue(  result.contains("</author>") );
         assertTrue(  result.contains("<title>") );

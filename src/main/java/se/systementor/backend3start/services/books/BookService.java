@@ -12,6 +12,9 @@ import java.io.InputStream;
 import java.util.List;
 
 
+// UNITTESTER ska vara bloxtsnabba ! Bara finnas en anledning till att faila!
+// 3000 unittester . som körs på kanske 3 sekunder
+
 @Service
 public class BookService {
 
