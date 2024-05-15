@@ -24,7 +24,7 @@ class BookServiceTestsIT {
     BookService sut;
 
     @Test
-    void getBooksWillFetch() throws IOException {
+    void getBooksShouldContainCorrectTags() throws IOException {
         Scanner s = new Scanner(sut.xmlStreamProvider.getDataStream()).useDelimiter("\\A");
         String result = s.hasNext() ? s.next() : "";
 
