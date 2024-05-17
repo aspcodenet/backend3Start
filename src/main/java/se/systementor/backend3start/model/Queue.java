@@ -46,6 +46,7 @@ public class Queue {
     private int messagesToSend;
 
 
+
     public int getMessagesToSend() {
         return messagesToSend;
     }
@@ -53,4 +54,6 @@ public class Queue {
     public void setMessagesToSend(int messagesToSend) {
         this.messagesToSend = messagesToSend;
     }
+
+
 }

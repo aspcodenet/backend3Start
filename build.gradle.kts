@@ -33,6 +33,9 @@ dependencies {
     implementation("com.rabbitmq:amqp-client")
     implementation("org.springframework.boot:spring-boot-starter-validation")
     implementation("com.github.javafaker:javafaker:1.0.2") { exclude ("org.yaml") }
+    implementation("nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect")
+// https://mvnrepository.com/artifact/org.modelmapper/modelmapper
+    implementation("org.modelmapper:modelmapper:3.2.0")
     compileOnly("org.projectlombok:lombok")
     runtimeOnly("com.mysql:mysql-connector-j")
     annotationProcessor("org.projectlombok:lombok")

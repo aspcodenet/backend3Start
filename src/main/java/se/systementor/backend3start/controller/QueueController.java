@@ -2,6 +2,7 @@ package se.systementor.backend3start.controller;
 
 import jakarta.validation.Valid;
 import org.hibernate.sql.model.PreparableMutationOperation;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import se.systementor.backend3start.DTO.QueueViewModel;
 import se.systementor.backend3start.model.Queue;
 import se.systementor.backend3start.model.QueueRepository;
 
@@ -27,7 +29,9 @@ public class QueueController extends BaseController {
         model.addAttribute("activeFunction", "queues");
         setupVersion(model);
 
-        model.addAttribute("queues", queueRepository.findAll());
+        var listOfViewModels = new ModelMapper().map(queueRepository.findAll(), QueueViewModel[].class);
+
+        model.addAttribute("queues", listOfViewModels);
         return "queues";
     }
 
