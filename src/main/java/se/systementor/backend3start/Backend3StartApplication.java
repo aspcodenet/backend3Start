@@ -1,13 +1,21 @@
 package se.systementor.backend3start;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import se.systementor.backend3start.security.UserDataSeeder;
 
 import java.util.Objects;
 
 @SpringBootApplication
 public class Backend3StartApplication {
+
+
+    @Autowired
+    private UserDataSeeder userDataSeeder;
 
     public static void main(String[] args) {
         if (args.length == 0) {
@@ -19,4 +27,14 @@ public class Backend3StartApplication {
 
         }
     }
+
+    @Bean
+    CommandLineRunner commandLineRunner() {
+        return args -> {
+            userDataSeeder.Seed();
+        };
+    }
+
+
+
 }
