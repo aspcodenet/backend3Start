@@ -3,6 +3,7 @@ package se.systementor.backend3start;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.ComponentScan;
+import se.systementor.backend3start.configuration.IntegrationProperties;
 
 import java.io.IOException;
 import java.net.URI;
@@ -51,10 +52,13 @@ Content-Type: application/json
 *
 * */
 
+    @Autowired
+    IntegrationProperties properties;
+
     @Override
     public void run(String... args) throws Exception {
 
-        String email = "sss@aaaaa.se";
+        String email = properties.getBlacklist().getEmailtocheck();
         System.out.println(isOk(email));
 
 
