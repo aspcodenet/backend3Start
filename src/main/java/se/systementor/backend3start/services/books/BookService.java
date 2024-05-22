@@ -45,21 +45,40 @@ public class BookService {
         return theBooks.books;
     }
 
+    // CLASS (UNIT)
+    // som en dator
+    // knappar PUBLIC
+    // testa bara PUBLIC -> vi testar aldrig INTERNAL DETAILS
+
+    protected void MapBook(Book theBook, book fromBook){
+        theBook.setAuthor(fromBook.author);
+        theBook.setExternalSystemId(fromBook.id);
+        theBook.setTitle(fromBook.title);
+        theBook.setCategory(fromBook.category);
+        theBook.setPrice(fromBook.price);
+        theBook.setExternalSystemId(fromBook.id);
+        theBook.setDescription(fromBook.description);
+        theBook.setPublishDate(fromBook.publishDate);
+    }
+
+    protected void SaveBook(Book theBook){
+        bookRepository.save(theBook);
+    }
+
     public void FetchAndSaveBooks() throws IOException {
         for(book b : GetBooks()){
-            Optional<Book> theBook = bookRepository.findByExternalSystemId(b.id);
-            if(theBook.isEmpty()){
-                theBook = Optional.of(new Book());
+
+            Book theBook;
+            Optional<Book> fromDatabase = bookRepository.findByExternalSystemId(b.id);
+            if(fromDatabase.isPresent()){
+                theBook = fromDatabase.get();
+            } else{
+                theBook = new Book();
             }
-            theBook.get().setAuthor(b.author);
-            theBook.get().setExternalSystemId(b.id);
-            theBook.get().setTitle(b.title);
-            theBook.get().setCategory(b.category);
-            theBook.get().setPrice(b.price);
-            theBook.get().setExternalSystemId(b.id);
-            theBook.get().setDescription(b.description);
-            theBook.get().setPublishDate(b.publishDate);
-            bookRepository.save(theBook.get());
+
+            MapBook(theBook,b);
+
+            SaveBook(theBook);
         }
 
     }

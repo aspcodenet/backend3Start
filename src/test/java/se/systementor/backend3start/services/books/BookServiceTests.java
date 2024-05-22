@@ -10,6 +10,7 @@ import se.systementor.backend3start.model.Book;
 import se.systementor.backend3start.model.BookRepository;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -48,6 +49,7 @@ class BookServiceTests {
 
     }
 
+
     @Test
     void fetchAndSaveBooksShouldInsertNewRecords() throws IOException {
         // Arrange
@@ -61,7 +63,38 @@ class BookServiceTests {
         verify(bookRepository,times(3)).save(argThat(book -> book.id == 0 ));
 
     }
-§
+
+
+     @Test
+    void fetchAndSaveBookMapsCorrectly() throws IOException {
+        // Arrange
+        when(xmlStreamProvider.getDataStream()).thenReturn(getClass().getClassLoader().getResourceAsStream("books.xml"));
+        when(bookRepository.findByExternalSystemId(Mockito.anyString())).thenReturn(Optional.empty());
+
+        // Act
+        sut.FetchAndSaveBooks();
+
+        //Assert
+        verify(bookRepository,times(1)).save(argThat(book -> book.id == 0  &&
+                        book.getAuthor().equals("Stefan 1")&&
+                        book.getTitle().equals("XML Developer's Guide") &&
+                        book.getCategory().equals("Computer")
+                // TO DO ADD MORE comparisons (all fields)
+        ));
+
+        verify(bookRepository,times(1)).save(argThat(book -> book.id == 0  &&
+                        book.getAuthor().equals("Stefan 2")&&
+                        book.getTitle().equals("Midnight Rain") &&
+                        book.getCategory().equals("Fantasy")
+                // TO DO ADD MORE comparisons (all fields)
+        ));
+
+
+    }
+
+
+
+
     @Test
     void fetchAndSaveBooksShouldUpdateExistingRecords() throws IOException {
         // Arrange
