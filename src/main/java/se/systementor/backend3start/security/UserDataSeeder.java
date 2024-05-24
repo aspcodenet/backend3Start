@@ -27,6 +27,9 @@ public class UserDataSeeder {
         if(userRepository.getUserByUsername("oliver.holmberg@systementor.se") == null){
             addUser("oliver.holmberg@systementor.se","Customer");
         }
+        if(userRepository.getUserByUsername("oliver3.holmberg@systementor.se") == null){
+            addUser("oliver3.holmberg@systementor.se","Admin");
+        }
     }
 
     private void addUser(String mail, String group) {
