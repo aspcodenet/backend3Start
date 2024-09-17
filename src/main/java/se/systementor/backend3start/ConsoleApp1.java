@@ -57,15 +57,15 @@ Content-Type: application/json
 
     @Override
     public void run(String... args) throws Exception {
-
-        String email = properties.getBlacklist().getEmailtocheck();
-        System.out.println(isOk(email));
-
-
-        setAsBad(email);
-        System.out.println(isOk(email));
-        setAsOk(email);
-        System.out.println(isOk(email));
+        dataSeeder.Seed();
+//        String email = properties.getBlacklist().getEmailtocheck();
+//        System.out.println(isOk(email));
+//
+//
+//        setAsBad(email);
+//        System.out.println(isOk(email));
+//        setAsOk(email);
+//        System.out.println(isOk(email));
 
 
 //        client.sendAsync(request, HttpResponse.BodyHandlers.ofString())
