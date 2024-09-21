@@ -5,6 +5,7 @@ on:
     branches: [ "postgres" ]
   pull_request:
     branches: [ "postgres" ]
+  workflow_dispatch:
 
 jobs:
 
