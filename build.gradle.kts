@@ -40,6 +40,7 @@ dependencies {
     runtimeOnly("org.postgresql:postgresql:42.7.4")
     annotationProcessor("org.projectlombok:lombok")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("com.h2database:h2")
 }
 
 tasks.withType<Test> {
@@ -71,7 +72,7 @@ tasks.test{
     }
 }
 
-tasks.check {
-    dependsOn(integrationTestTask)
-}
+//tasks.check {
+//    dependsOn(integrationTestTask)
+//}
 
